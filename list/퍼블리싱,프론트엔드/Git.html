@@ -369,9 +369,48 @@
           <summary id="section-1-12">12. git pull 작업 폴더 동기화하기</summary>
             <div class="box">
               <ol>
-                <li>"git pull origin"
+                <li>"git pull origin" 변경된 부분 동기화
                     <ul>
-                        <li></li>
+                        <li>우리가 다시 복사하는게 아니라 변경된 부분만 가지고 와서 동기화 하면 되니까 ..</li>
+                        <li>간단하게 "git pull origin" 이렇게 입력을 해주면 된다.</li>
+                    </ul>
+                </li>
+              </ol>
+            </div>
+        </details>
+
+        
+    </section>
+
+    <section class="section-content">
+        <details>
+          <summary id="section-1-13">12. git cil 최종정리</summary>
+            <div class="box">
+              <ol>
+                <li>깃 cil 최종 정리해보기
+                    <ul>
+                        <li>1. github에 새로운 저장소 만들기</li>
+                        <li>2. 새로운 폴더와 파일 셋팅하기</li>
+                        <li>3. 'git remote add origin 해당주소' | 해당주소 만들기 (전역으로 아이디 이메일 등록했기 떄문에 따로 등록할 필요 없음)</li>
+                        <li>4. 'git init' | 초기화</li>
+                        <li>5. 'git add .'' | 변경사항 저장</li>
+                        <li>6. 'git status' | 해당 상태 확인</li>
+                        <li>7. 'git commit' | -m "메시지" commit하기</li>
+                        <li>8. 'git ckeckout 커밋아이디' | 해당 커밋으로 이동</li>
+                        <li>9. 'git checkout master 커밋아이디' | 최신커밋으로 이동</li>
+                        <li>10. 첫번쨰 커밋에 버전 만들려면 git commit 1번쨰커밋아이디 -> git branch 브랜치이름 -> git checkout 브랜치이름 -> git branch -v(버전확인) -> git add . -> git commit -m "1-1버전" -> git checkout master로 최신으로 복귀</li>
+                        <li>11. 'git merge' 브랜치이름 | 브랜치와 마스터를 합친다</li>
+                        <li>12. conflict가 발생하면 ? -> 중복되는 코드를 수정해준다 -> 'git add .' 변경사항 저장 해주고 -> 'git commit -m "메시지"' 커밋해주고 -> 'git log'를 보면 conflict solve가 뜨면서 최신 브랜치.. 합쳐진 브랜치까지 만들어진다.</li>
+                        <li>13. 'git push origin master' or 'git push origin all--' | 깃 저장소에 올리기</li>
+                        <li>번외 | 버전관리 할 필요가 없는 폴더가 있다면 ?!?
+                            <ul>
+                                <li>git add . = 모든 파일이 버전관리가 된다</li>
+                                <li>.gitingnore 파일을 만들고 .. 그 안에 파일명을 쓰면 된다.</li>
+                                <li>이런식으로 ( uselesee.txt ) = 해당 파일 이그노어</li>
+                                <li>( /nothing ) = 폴더 전체 이그노어</li>
+                                <li>깃 푸쉬해서 올려도 해당 파일은 올라가지 않고 .. 추적도 하지 않고 완전히 차단된다.</li>
+                            </ul>
+                        </li>
                     </ul>
                 </li>
               </ol>
