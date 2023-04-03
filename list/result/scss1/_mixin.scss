@@ -1,0 +1,11 @@
+@mixin button($wid:100px, $bg:gray){
+    width: $wid;
+    height: 40px;
+    border-radius: 20px;
+    background-color: $bg;
+    font-size: 12px;
+    line-height: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

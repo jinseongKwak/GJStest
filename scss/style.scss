@@ -1,0 +1,31 @@
+@charset "utf-8";
+@import "_reset";
+.wrap{
+  display:flex;
+    
+    header{
+      border:1px solid #ccc;
+    }
+    main{
+
+    }
+}
+.box{
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+main{
+  padding: 20px;
+
+    #section-header{
+      position: relative;
+    }
+
+}
+
+.section-content details{
+  padding: 20px;
+}
+
+

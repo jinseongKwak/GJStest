@@ -1,0 +1,38 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+.wrap {
+  display: flex;
+}
+.wrap header {
+  border: 1px solid #ccc;
+}
+.box {
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+main {
+  padding: 20px;
+}
+main #section-header {
+  position: relative;
+}
+
+.section-content details {
+  padding: 20px;
+}
+
+/*# sourceMappingURL=style.css.map */

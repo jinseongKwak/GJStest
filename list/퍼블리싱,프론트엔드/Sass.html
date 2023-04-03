@@ -1,0 +1,920 @@
+<php? include "header.html" ?>
+
+  <main>
+    <div class="box"><!-- 1번째 박스 -->
+    <section id="section-header">
+          <details>
+            <summary>최성일 Sass를 활용한 효율적인 CSS</summary>
+            <ol>
+              <li><a href="#section-1-1">1. Sass소개 및 설치</a></li>
+              <li><a href="#section-1-2">2. Sass 컴파일</a></li>
+              <li><a href="#section-1-3">3. Sass map파일의 이해</a></li>
+              <li><a href="#section-1-4">4. import</a></li>
+              <li><a href="#section-1-5">5. nesting</a></li>
+              <li><a href="#">6. 변수</a></li>
+              <li><a href="#">7. mixin</a></li>
+              <li><a href="#">8. @for</a></li>
+              <li><a href="#">9. @each</a></li>
+              <li><a href="#">10. @if</a></li>
+            </ol>
+          </details>
+    </section >
+  </div>
+    <hr>
+
+    <div class="box"><!-- 2번쨰박스 -->
+    <details>
+      <summary>최성일 Sass를 활용한 효율적인 CSS</summary>
+    <section class="section-content">
+          <details >
+            <summary id="section-1-1">1. Sass소개 및 설치</summary>
+            <div class="box">
+              <ol>
+                <li>Node.js설치 (npm이라는 패키지 관리자 툴을 사용할 수 있음)
+                  <ul>
+                    <li><a href="https://nodejs.org/en">Node.js 링크</a></li>
+                    <li>안전화 버전인 LTS를 다운로드를 한다.</li>
+                    <li>설치가 완료되면 Next만 누르면 된다.</li>
+                    <li>컴퓨터를 재부팅 후 cmd 터미널 창을 연 후 "node -v" 입력</li>
+                    <li>
+                      <pre>
+                        <code class="language-html">node -v</code>
+                      </pre>
+                    </li>
+                    <li>노드 버전이 뜨면 성공이다.</li>
+                  </ul>           
+                </li>
+
+                <li>2단계 Dart 버전 Sass 설치(최신버전)
+                  <ul>
+                    <li>cmd 터미널 창을 연 후 "npm install sass -g" 입력</li>
+                    <li>
+                      <pre>
+                        <code class="language-html">npm install sass -g</code>
+                      </pre>
+                    </li>
+                    <li>여기서 -g는 글로벌 이라는 뜻이다. 시스템 전역에 설치하겠다.</li>
+                    <li>사스가 잘 설치됐는지 확인하려면 "sass --version"을 입력한다</li>
+                    <li>버전이 뜨면 잘 설치가 된것이다..</li>
+                  </ul>
+                </li>
+              </ol>
+            </div>
+          </details>
+    </section>
+
+    <section class="section-content">
+      <details>
+        <summary id="section-1-2">2. Sass 컴파일</summary>
+        <div class="box">
+          <ol>
+            <li>Sass
+              <ul>
+                <li>Sass는 css의 전처리기다.(작성은 sass로 읽는것은 sass에서 변환이 된 css로 읽는다)</li>
+                <li>브라우저는 일반 css스타일만 읽는다</li>
+                <li>폴더 sass를 만들고 그 안에 이름.sass 파일을 만든 후 다음과 같이 아래 코드를 입력해 본다.
+                  <pre>
+                    <code class="language-sass">
+                      * 
+                        margin: 0px
+                        padding: 0px
+                    </code>
+                  </pre>
+                </li>
+                <li>그리고 터미널 창을 열어서 "sass --watch sass/style.sass css/style.css" 입력</li>
+                <li>
+                  <pre>
+                    <code class="language-html">
+                      sass --watch sass/style.sass css/style.css
+                    </code>
+                  </pre>
+                </li>
+                <li>위 구문은 "sass --감시하다 해당폴더를 그리고 css폴더에 style.css를 만든다</li>
+                <li>엔터를 치고 명령어가 뜨면 잘 된것이다. 그러면 css 폴더와 그 안에  style.css 그리고 style.css.map 파일이 생긴다. </li>
+                <li>터미널 창에서 "ctrl + c" 를 누르면 sass의 와칭이 풀린다.</li>
+              </ul>
+              <li>SCSS
+                <ul>
+                  <li>Sass의 불편한 점을 개선해서 만든 것</li>
+                  <li>컴파일 하는 방법은 sass와 같다.</li>
+                  <li>터미널 창을 열어서 "sass --watch scss/style.scss css/style.css" 입력</li>
+                  <li>
+                    <pre>
+                      <code class="language-html">
+                        sass --watch scss/style.scss css/style.css
+                      </code>
+                    </pre>
+                  </li>
+                </ul>
+              </li>
+            </li>
+          </ol>
+        </div>
+      </details>
+    </section>
+
+    <section class="section-content">
+      <details>
+        <summary id="section-1-3">3. Sass map파일의 이해</summary>
+          <div class="box">
+            <ol>
+              <li>map 파일의 이해
+                <ul>
+                  <li>map = 지도</li>
+                  <li>scss에서 작업을 하면 실제 브라우저에서 읽고 있는 파일은 css 파일이다.</li>
+                  <li>map이란 파일이 없으면 scss에서 어떤 클래스에 스타일을 주는데 그게 13번쨰 줄이라면..  css 에서는 10번째 줄에 있을 수 있다.</li>
+                  <li>개발자 도구(f12)로 창을 열여보면 그 클래스 스타일의 원본 위치가 어디에 있는지 알려주는 역할을 한다.</li>
+                </ul>
+              </li>
+            </ol>
+          </div>
+        
+      </details>
+    </section>
+
+    <section class="section-content">
+      <details>
+        <summary id="section-1-4">4. import</summary>
+          <div class="box">
+            <ol>
+              <li>import 수입
+                <ul>
+                  <li>imprt 구문.. 원하는 파일을 따로</li>
+                  <li>
+                    <pre>
+                      <code class="language-html">
+                        &lt;section class="wrap">
+                          &lt;article class="item">
+                            &lt;h2>Sub title&lt;/h2>
+                            &lt;p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi ut placeat dignissimos in maiores sunt.&lt;/p>
+                            &lt;a href="">&lt;/a>
+                          &lt;/article>
+                          &lt;article class="item">
+                            &lt;h2>Sub title&lt;/h2>
+                            &lt;p>Culpa, ab in. Et quibusdam sed quae illum numquam qui soluta obcaecati distinctio incidunt doloribus.&lt;/p>
+                            &lt;a href="">&lt;/a>
+                          &lt;/article>
+                          &lt;article class="item">
+                            &lt;h2>Sub title&lt;/h2>
+                            &lt;p>Distinctio alias rerum laboriosam blanditiis exercitationem. Commodi aspernatur magni quo accusamus ut cum. Ducimus, soluta.&lt;/p>
+                            &lt;a href="">&lt;/a>
+                          &lt;/article>
+                          &lt;article class="item">
+                            &lt;h2>Sub title&lt;/h2>
+                            &lt;p>Consequatur facere sequi sed! Aspernatur assumenda atque minus eius nulla inventore incidunt voluptatum harum autem?&lt;/p>
+                            &lt;a href="">&lt;/a>
+                          &lt;/article>
+                      </code>
+                    </pre>
+                  </li>
+                  <li>_reset.css 파샬 파일로 뺼꺼임(partial)부분적인 ..
+                    <pre>
+                      <code class="language-scss">
+                        *{
+                          margin: 0px;
+                          padding: 0px;
+                          box-sizing:border-box;
+                        }
+                        ul, ol, li{
+                          list-style:none;
+                        }
+                        a{
+                          text-decoration:none;
+                        }
+                      </code>
+                    </pre>
+                  </li>
+                  <li>style.css
+                    <pre>
+                      <code class="language-css">
+                        @charset "utf-8";
+                        @import "reset"
+                      </code>
+                    </pre>
+                  </li>
+                </ul>
+              </li>
+            </ol>
+          </div>
+        
+      </details>
+    </section>
+
+    <section class="section-content">
+      <details>
+        <summary id="section-1-5">5. nesting</summary>
+        <div class="box">
+          <ol>
+            <li>nesting 중첩
+              <ul>
+                <li>html 구조와 css와 동일하게 들여쓰기를 해서 컴퍼넌트 별로 css 구문을 구조화 시킬 수 있다.</li>
+                <li>일반 css (코드 노가다가 심함)
+                  <pre>
+                    <code class="language-css">
+                      body{
+                        background:#333;
+                      }
+                      .wrap{
+                        width:100%;
+                        border:2px solid #bbb;
+                        padding:100px;
+                        display:flex;
+                        justify-content:center;
+                      }
+                      .wrap .item{
+                        width:300px;
+                        padding:30px;
+                        background:#fff;
+                        margin:50px;
+                        border-radius:10px;
+                        box-shadow:5px 5px 20px (rgba(0,0,0,0.1);
+                      }
+
+                      .wrap item h2{
+                        font-size:30px;
+                        font-family:"arial";
+                        color:#333;
+                      }
+                      .wrap item p{
+                        font-size:14px;
+                        line-height:1.3;
+                        font-family:"arial";
+                        color:#777;
+                        margin-bottom:20px;
+                      }
+                      .wrap item a{
+                        width:100px;
+                        height:40px;
+                        border-radius:20px;
+                        background:gray;
+                        font-size:12px;
+                        line-height:#fff;
+                        display:flex;
+                        justify-content:center;
+                        align-item:center;
+                      }
+                    </code>
+                  </pre>
+                </li>
+                <li>구조화 된 scss
+                  <pre>
+                    <code class="language-scss">
+                      body{
+                      background:#333;
+                      }
+                      .wrap{
+                      width:100%;
+                      border:2px solid #bbb;
+                      padding:100px;
+                      display:flex;
+                      justify-content:center;
+
+                          .item{
+                          width:300px;
+                          padding:30px;
+                          background:#fff;
+                          margin:50px;
+                          border-radius:10px;
+                          box-shadow:5px 5px 20px (rgba(0,0,0,0.1);
+
+                            h2{
+                            font-size:30px;
+                            font-family:"arial";
+                            color:#333;
+                            }
+
+                            p{
+                            font-size:14px;
+                            line-height:1.3;
+                            font-family:"arial";
+                            color:#777;
+                            margin-bottom:20px;
+                            }
+
+                            a{
+                            width:100px;
+                            height:40px;
+                            border-radius:20px;
+                            background:gray;
+                            font-size:12px;
+                            line-height:#fff;
+                            display:flex;
+                            justify-content:center;
+                            align-item:center;
+                            }
+
+                          }//.item End 
+                      }//.wrap End
+                      
+                    </code>
+                  </pre>
+                </li>
+                <li>호버를 쉽게 할 수 있다.
+                  <pre>
+                    <code class="language-scss">
+                      body{
+                      background:#333;
+                      }
+                      .wrap{
+                      width:100%;
+                      border:2px solid #bbb;
+                      padding:100px;
+                      display:flex;
+                      justify-content:center;
+
+                          .item{
+                          width:300px;
+                          padding:30px;
+                          background:#fff;
+                          margin:50px;
+                          border-radius:10px;
+                          box-shadow:5px 5px 20px (rgba(0,0,0,0.1);
+
+                            h2{
+                            font-size:30px;
+                            font-family:"arial";
+                            color:#333;
+                            }
+
+                            p{
+                            font-size:14px;
+                            line-height:1.3;
+                            font-family:"arial";
+                            color:#777;
+                            margin-bottom:20px;
+                            }
+
+                            a{
+                            width:100px;
+                            height:40px;
+                            border-radius:20px;
+                            background:gray;
+                            font-size:12px;
+                            line-height:#fff;
+                            display:flex;
+                            justify-content:center;
+                            align-item:center;
+                            }
+                            //& = 부모요소를 가짐 여기서는  .item을 의미함
+                            &:hover {
+                              background:aqua;
+
+                              h2{
+                                color:#fff;
+                              }
+                              p{
+                                color:#fff;
+                              }
+                              a{
+                                background:yellow;
+                              }
+                            }
+
+                          }//.item End 
+                      }//.wrap End
+                      
+                    </code>
+                  </pre>
+                </li>
+                <li>& = 해당 부모를 선택</li>
+              </ul>
+            </li>
+          </ol>
+        </div>
+      </details>
+    </section>
+
+    <section class="section-content">
+      <details>
+        <summary id="section-1-6">06. 변수</summary>
+        <div class="box">
+          <ol>
+            <li>변수
+              <ul>
+                <li>$변수명:변수값</li>
+                <li>자주 변하거나 전역적으로 변할 수 있는 스타일을 변수로 지정해서 손쉽게 바꾸자</li>
+                <li>
+                  <pre>
+                  <code class="language-scss">
+                    @charset "utf-8";
+                    @import "__reset";
+                    
+                    $bgBody:#eee;
+                    $bgItem: #fff;
+                    $colorH2:#333;
+                    $colorP:#777;
+                    $bgButton:gray;
+                    
+                    body {
+                    background: $bgBody;
+                    }
+                    
+                    .wrap {
+                    width: 100%;
+                    border: 2px solid #bbb;
+                    padding: 100px;
+                    display: flex;
+                    justify-content: center;
+                    
+                    .item {
+                    width: 300px;
+                    padding: 30px;
+                    background: $bgItem;
+                    margin: 50px;
+                    border-radius: 10px;
+                    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.1);
+                    
+                    h2{
+                    font-size:30px;
+                    font-family:"arial";
+                    color:$colorH2;
+                    }
+                    
+                    p {
+                    font-size:14px;
+                    line-height:1.3;
+                    font-family:"arial";
+                    color:$colorP;
+                    margin-bottom:20px;
+                    }
+                    
+                    a {
+                    width:100px;
+                    height:40px;
+                    border-radius:20px;
+                    background-color:$bgButton;
+                    font-size:12px;
+                    line-height:#fff;
+                    display:flex;
+                    justify-content:center;
+                    align-items: center;
+                    }
+                    
+                    //& = 부모요소를 가짐 여기서는 .item을 의미함
+                    &:hover {
+                    background-color:aqua;
+                    
+                    h2 {
+                    color:#fff;
+                    }
+                    
+                    p {
+                    color:#fff;
+                    }
+                    
+                    a {
+                    background-color:yellow;
+                    }
+                    }
+                    
+                    }
+                    
+                    //.item End
+                    }
+                    
+                    //.wrap End
+                  </code>
+                </pre></li>
+              </ul>
+            </li>
+          </ol>
+        </div>
+      </details>
+    </section>
+
+    <section class="section-content">
+      <details>
+        <summary id="section-1-7">07. mixin</summary>
+        <div class="box">
+          <ol>
+            <li>mixin : 자주 만드는 UI 컴포넌트를 해당 기능을 빠르게 만들어 주는 css 꾸러미(패키지)를 만드는 기술
+              <ul>
+                <li>script의 함수와 비슷한 기능이라 할 수 있다</li>
+                <li>자주 사용하는 기능을 명령어 하나로 빠르게</li>
+                <li>공통적인 ui를 mixin 형태로 만들어 놓으면 편함</li>
+                <li>@mixin 변수이름(){}</li>
+                <li>_mixin.scss
+                  <pre>
+                    <code class="language-scss">
+
+                    </code>
+                  </pre>
+                </li>
+                <li>_mixin.scss
+                  <pre>
+                    <code class="language-scss">
+                      a {
+                      @include button();
+                      }
+                    </code>
+                  </pre>
+                </li>
+                <li>기본적인 방법은 쉽다. 하지만 기본 양식은 똑같은데 버튼의 가로길이만 바꾸고 싶다면 ?? 변수를 활용하면 된다.</li>
+                <li>@mixin 부분 괄호 안에는 변수를 만들고 바꾸고 싶은 css 값에도 변수를 넣는다.</li>
+                <li>@liclude 하는 변수쪽에는 값을 넣어주면 된다.</li>
+                <li>mixin scss부분
+                  <pre>
+                    <code class="language-scss">
+                      @mixin button($wid){
+                      width: $wid;
+                      height: 40px;
+                      border-radius: 20px;
+                      background-color: $bgButton;
+                      font-size: 12px;
+                      line-height: #fff;
+                      display: flex;
+                      justify-content: center;
+                      align-items: center;
+                      }
+                    </code>
+                  </pre>
+                </li>
+                  <li>style scss부분
+                    <pre>
+                      <code class="language-scss">
+                        a {
+                        @include button(150);
+                        }
+                      </code>
+                    </pre>
+                  </li>
+                  <li>그럼 각각 버튼 길이를 다르게 하고싶다면 ?</li>
+                  <li>style.scss
+                    <pre>
+                      <code class="language-scss">
+                          &:nth-of-type(1) a{
+                          @include button()
+                          }
+                          &:nth-of-type(2) a{
+                          @include button($wid:120px, $bg:hotpink;)
+                          }
+                          &:nth-of-type(3) a {
+                          @include button(140px)
+                          }
+                          &:nth-of-type(4) a {
+                          @include button(160px)
+                          }
+                      </code>
+                    </pre>
+                  </li>
+                  <li>mixin.scss
+                    <pre>
+                      <code class="language-scss">
+                        @mixin button($wid:100px, $bg:gray){
+                        width: $wid;
+                        height: 40px;
+                        border-radius: 20px;
+                        background-color: $bg;
+                        font-size: 12px;
+                        line-height: #fff;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        }
+                      </code>
+                    </pre>
+                  </li>
+              </ul>
+            </li>
+          </ol>
+        </div>
+      </details>
+    </section>
+
+    <section class="section-content">
+      <details>
+        <summary id="section-1-8">08. @for</summary>
+        <div class="box">
+        <ol>
+          <li>@for 반복문
+            <ul>
+              <li>아래 코드의 transition-delay 부분을 하나씩 바꾸려면 많은 노가다가 필요하다
+                <pre>
+                  <code class="language-scss">
+                    @charset "utf-8";
+                    @import "__reset";
+                    @import "_mixin";
+                    
+                    $bgBody:#eee;
+                    $bgItem: #fff;
+                    $colorH2:#333;
+                    $colorP:#777;
+                    $bgButton:gray;
+                    
+                    body {
+                    background: $bgBody;
+                    }
+                    
+                    .wrap {
+                    width: 100%;
+                    border: 2px solid #bbb;
+                    padding: 100px;
+                    display: flex;
+                    justify-content: center;
+                    perspective: 600px;
+                    
+                    .item {
+                    width: 300px;
+                    padding: 30px;
+                    background: $bgItem;
+                    margin: 50px;
+                    border-radius: 10px;
+                    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.1);
+                    transition: 0.5s;
+                    transform: translateY(100px) rotateY(180deg);
+                    opacity: 0;
+                    
+                    h2{
+                    font-size:30px;
+                    font-family:"arial";
+                    color:$colorH2;
+                    }
+                    
+                    p {
+                    font-size:14px;
+                    line-height:1.3;
+                    font-family:"arial";
+                    color:$colorP;
+                    margin-bottom:20px;
+                    }
+                    
+                    &:nth-of-type(1) {
+                    transition-delay: 0.1s;
+                    a {
+                    @include button($bg: hotpink);
+                    }
+                    }
+                    &:nth-of-type(2){
+                    transition-delay: 0.2s;
+                    a {
+                    @include button($bg: aqua);
+                    }
+                    }
+                    &:nth-of-type(3){
+                    transition-delay: 0.3s;
+                    a {
+                    @include button($bg: orange);
+                    }
+                    }
+                    &:nth-of-type(4){
+                    transition-delay: 0.4s;
+                    a {
+                    @include button($bg: lightgreen);
+                    }
+                    }
+              
+                  </code>
+                </pre>
+              </li>
+              <li>하지만 @for 반복문을 쓰면?</li>
+              <pre>
+                <code class="language-scss">
+                  @charset "utf-8";
+                  @import "__reset";
+                  @import "_mixin";
+                  
+                  $bgBody:#eee;
+                  $bgItem: #fff;
+                  $colorH2:#333;
+                  $colorP:#777;
+                  $bgButton:gray;
+                  $interval:0.1s;
+                  
+                  body {
+                  background: $bgBody;
+                  }
+                  
+                  .wrap {
+                  width: 100%;
+                  border: 2px solid #bbb;
+                  padding: 100px;
+                  display: flex;
+                  justify-content: center;
+                  perspective: 600px;
+                  
+                  .item {
+                  width: 300px;
+                  padding: 30px;
+                  background: $bgItem;
+                  margin: 50px;
+                  border-radius: 10px;
+                  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.1);
+                  transition: 0.5s;
+                  transform: translateY(100px) rotateY(180deg);
+                  opacity: 0;
+                  
+                  h2{
+                  font-size:30px;
+                  font-family:"arial";
+                  color:$colorH2;
+                  }
+                  
+                  p {
+                  font-size:14px;
+                  line-height:1.3;
+                  font-family:"arial";
+                  color:$colorP;
+                  margin-bottom:20px;
+                  }
+                  
+                  
+                  @for $i from 1 through 4{
+                  &:nth-of-type(#{$i}){
+                  transition-delay: $interval * $i;
+                  }
+                  }
+                  
+                  &:nth-of-type(1) {
+                  
+                  a {
+                  @include button($bg: hotpink);
+                  }
+                  }
+                  &:nth-of-type(2){
+                  
+                  a {
+                  @include button($bg: aqua);
+                  }
+                  }
+                  &:nth-of-type(3){
+                  
+                  a {
+                  @include button($bg: orange);
+                  }
+                  }
+                  &:nth-of-type(4){
+                  
+                  a {
+                  @include button($bg: lightgreen);
+                  }
+                  }
+                  
+                  //& = 부모요소를 가짐 여기서는 .item을 의미함
+                  &:hover {
+                  background-color:aqua;
+                  
+                  h2 {
+                  color:#fff;
+                  }
+                  
+                  p {
+                  color:#fff;
+                  }
+                  
+                  a {
+                  background-color:yellow;
+                  }
+                  }
+                  
+                  }
+                  
+                  &:hover{
+                  .item{
+                  transform:translateY(0px) rotateY(0deg);
+                  opacity: 1;
+                  }
+                  }
+                  //.item End
+                  }
+                  
+                  //.wrap End
+                </code>
+              </pre>
+            </ul>
+          </li>
+          <li>@for $i from to 4 = 1부터 3까지</li>
+          <li>@for $i from through 4 = 1부터 4까지</li>
+        </ol>
+        </div>
+      </details>
+    </section>
+    
+    <section class="section-content">
+      <details>
+        <summary id="section-1-9">@each</summary>
+        <div class="box">
+          <ol>
+            <li>each 문
+              <ul>
+                <li>for문은 숫자밖에 안되지만 each문은 다된다.</li>
+                <li>#{} 은 괄호 안 변수를 넣을때 사용한다.</li>
+              </ul>
+            </li>
+            <li>
+              <pre>
+                <code class="language-scss">
+                    @each $el in $bgs{
+                    $num: index($bgs, $el);
+                    &:nth-of-type(#{$num}) {
+                    transition-delay:$interval * $num;
+                    a{
+                    @include button($bg:$el);
+                    }
+                    }
+                    }
+                </code>
+              </pre>
+            </li>
+          </ol>
+        </div>
+      </details>
+    </section>
+
+    <section class="section-content">
+      <details>
+      <summary>10. @if</summary>
+      <div class="box">
+        <ol>
+          <li>if문 조건문
+            <ul>
+              <li>조건문을 활용한 light 모드 dark 모드</li>
+              <li>
+                <pre>
+                  <code class="language-scss">
+                    @charset "utf-8";
+                    @import "__reset";
+                    @import "_mixin";
+                    
+                    $bgBody:#eee;
+                    $bgItem: #fff;
+                    $interval:0.1s;
+                    $bgs: (
+                    hotpink,
+                    aqua,
+                    orange,
+                    lightgreen
+                    );
+                    
+                    body {
+                    background: $bgBody;
+                    }
+                    
+                    .wrap {
+                    width: 100%;
+                    border: 2px solid #bbb;
+                    padding: 100px;
+                    display: flex;
+                    justify-content: center;
+                    perspective: 600px;
+                    
+                    .item {
+                    width: 300px;
+                    padding: 30px;
+                    background: $bgItem;
+                    margin: 50px;
+                    border-radius: 10px;
+                    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.1);
+                    
+                    
+                    h2{
+                    font-size:30px;
+                    font-family:"arial";
+                    @if $bgItem == #fff {color:#333}
+                    @else {color:#fff}
+                    margin: 15px;
+                    }
+                    
+                    p {
+                    font-size:14px;
+                    line-height:1.3;
+                    font-family:"arial";
+                    @if $bgItem ==#fff {
+                    color: #333
+                    }
+                    
+                    @else {
+                    color: #fff
+                    }
+                    margin-bottom:20px;
+                    }
+                    a{
+                    font-size:20px;
+                    }
+                    &:hover{
+                    background: #111;
+                    
+                    h2,p,a{
+                    color:#fff;
+                    }
+                    }
+                    }
+                    }
+                  </code>
+                </pre>
+              </li>
+            </ul>
+          </li>
+        </ol>
+      </div>
+    </section>
+    </details>
+
+
+
+
+    </div>
+  </main>
+  </div>
+  </body>
+
+  </html>
